@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {DatabaseStorageService} from "../shared/database-storage.service";
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  constructor(private dataStorageService: DatabaseStorageService){}
   collapsed = true;
+
+  onSaveData() {
+    this.dataStorageService.storeRecipe();
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchRecipe().subscribe();
+  }
 }
